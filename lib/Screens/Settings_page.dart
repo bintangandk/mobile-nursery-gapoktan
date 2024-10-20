@@ -74,10 +74,10 @@ class _settingsPageState extends State<settingsPage> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: greenColor,
+                        color: brownColor,
                       ),
                       borderRadius: BorderRadius.circular(10),
-                      color: greenColor,
+                      color: brownColor,
                     ),
                     child: Column(
                       children: [

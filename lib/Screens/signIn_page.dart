@@ -56,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: whiteColor,
         content: Row(
           children: [
-            Icon(Icons.check, color: greenColor, size: 50),
+            Icon(Icons.check, color: brownColor, size: 50),
             const SizedBox(width: 20),
             Text(
               'Berhasil Login',
@@ -133,9 +133,9 @@ class _SignInPageState extends State<SignInPage> {
                 bottom: 50,
               ),
               decoration: const BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/gmf.png'))),
+                  image: DecorationImage(image: AssetImage('assets/logo-kopi.png'))),
             ),
-            Text('Halo',
+            Text('Halo, Selamat datang di kopi nursery',
                 textAlign: TextAlign.center,
                 style: blackTextStyle.copyWith(
                   fontSize: 20,
@@ -169,7 +169,7 @@ class _SignInPageState extends State<SignInPage> {
                   contentPadding: const EdgeInsets.all(12),
                   fillColor: greyColor,
                   iconColor: greyColor,
-                  hoverColor: greenColor,
+                  hoverColor: brownColor,
                   focusColor: greyColor,
                   prefixIconColor: greyColor,
                   suffixIconColor: greyColor),
@@ -216,7 +216,7 @@ class _SignInPageState extends State<SignInPage> {
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  backgroundColor: greenColor,
+                  backgroundColor: brownColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14)),
                 ),

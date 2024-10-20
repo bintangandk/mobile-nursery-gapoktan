@@ -32,9 +32,9 @@ class _SplashPageState extends State<SplashPage> {
     runApp(MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            scaffoldBackgroundColor: greenColor,
+            scaffoldBackgroundColor: brownColor,
             appBarTheme: AppBarTheme(
-                backgroundColor: greenColor,
+                backgroundColor: brownColor,
                 centerTitle: false,
                 elevation: 1,
                 titleTextStyle: blackTextStyle.copyWith(
@@ -51,14 +51,14 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: greenColor,
+      backgroundColor: brownColor,
       body: Center(
         child: Container(
           height: 209,
           width: 209,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/gmf.png'))),
+                  image: AssetImage('assets/logo-kopi.png'))),
         ),
       ),
     );

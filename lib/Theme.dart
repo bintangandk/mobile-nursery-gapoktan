@@ -10,7 +10,7 @@ Color lightBackgroundColor = const Color(0xffF6F8FB);
 Color darkBackgroundColor = const Color(0xff020518);
 Color blueColor = const Color(0xff53C1F9);
 Color bluetogreenColor = const Color(0xff228896);
-Color greenColor = const Color(0xff065f46);
+Color brownColor = const Color(0xff914f1e);
 Color numberBackgroundColor = const Color(0xff1A1D2E);
 Color neutral80Color = const Color(0xffC9C5CA);
 Color dark50Color = const Color(0xff4e5b5c);
@@ -62,7 +62,7 @@ TextStyle blueTextStyle = GoogleFonts.inter(
 );
 
 TextStyle greenTextStyle = GoogleFonts.inter(
-  color: greenColor,
+  color: brownColor,
 );
 
 FontWeight light = FontWeight.w300;

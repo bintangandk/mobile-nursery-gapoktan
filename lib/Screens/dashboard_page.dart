@@ -176,7 +176,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: greenColor,
+        backgroundColor: brownColor,
         elevation: 0,
         toolbarHeight: 1,
       ),
@@ -185,7 +185,7 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Column(
           children: [
             Container(
-              color: greenColor,
+              color: brownColor,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -219,7 +219,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
             ),
             Container(
-              color: greenColor,
+              color: brownColor,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -234,7 +234,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       SizedBox(width: 3),
                       DropdownButton(
                         value: dropdownvalue,
-                        dropdownColor: greenColor,
+                        dropdownColor: brownColor,
                         style: whitekTextStyle,
                         icon: Icon(Icons.keyboard_arrow_down,
                             color: Colors.white),

@@ -21,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: greenColor,
+          backgroundColor: brownColor,
           elevation: 0,
           toolbarHeight: 20,
         ),
@@ -32,7 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
             Container(
               width: 393,
               height: 200,
-              color: greenColor,
+              color: brownColor,
               child: Stack(
                 children: [
                   Row(

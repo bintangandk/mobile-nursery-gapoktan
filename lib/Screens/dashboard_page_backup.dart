@@ -67,7 +67,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: greenColor,
+        backgroundColor: brownColor,
         elevation: 0,
         toolbarHeight: 20,
       ),
@@ -82,7 +82,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     // margin: EdgeInsets.only(bottom: 20.0),
                     alignment: Alignment.topCenter,
                     height: 200.0,
-                    decoration: BoxDecoration(color: greenColor),
+                    decoration: BoxDecoration(color: brownColor),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
