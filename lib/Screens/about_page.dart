@@ -148,7 +148,7 @@ class _aboutPageState extends State<aboutPage> {
                         Container(
                           margin: EdgeInsets.all(10),
                           child:  Text(
-                              'Gumukmas Multifarm (GMF) adalah perusahaan yang berfokus pada kemitraan domba dan penyediaan pakan ternak ruminansia berkualitas tinggi. Berlokasi di Jember, Jawa Timur, kami berkomitmen untuk mendukung peternak lokal menjadi go internasional. Hubungi kami dibawah ini!',
+                              'Gapoktan Subur adalah gabungan kelompok tani yang berfokus pada bidang pertanian berkualitas tinggi. Berlokasi di Jember, Jawa Timur, kami berkomitmen untuk mendukung petani lokal menjadi go internasional. Hubungi kami dibawah ini!',
                               style: blackTextStyle.copyWith(
                                   fontSize: 13, fontWeight: regular),
                               textAlign: TextAlign.justify,
@@ -192,14 +192,14 @@ class _aboutPageState extends State<aboutPage> {
                       width: 20,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/instagram.png')),
+                              image: AssetImage('assets/instagram-logo.png')),
                         ),
                     ),
                     const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'gumukmasmultifarm',
+                      'gapoktansubur',
                       style: greyTextStyle.copyWith(
                           fontSize: 11, fontWeight: light),
                     )
@@ -228,14 +228,14 @@ class _aboutPageState extends State<aboutPage> {
                       width: 20,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/facebook.png')),
+                              image: AssetImage('assets/facebook-logo.png')),
                         ),
                     ),
                     const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'Gumukmas Multifarm',
+                      'Gapoktan Subur',
                       style: greyTextStyle.copyWith(
                           fontSize: 11, fontWeight: light),
                     )
@@ -264,14 +264,14 @@ class _aboutPageState extends State<aboutPage> {
                       width: 20,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/twitter.png')),
+                            image: AssetImage('assets/twitter-logo.png')),
                       ),
                     ),
                     const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'FarmMulti',
+                      'GapoktanSubur',
                       style: greyTextStyle.copyWith(
                           fontSize: 11, fontWeight: light),
                     )
@@ -300,14 +300,14 @@ class _aboutPageState extends State<aboutPage> {
                         width: 20,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/youtube.png')),
+                              image: AssetImage('assets/youtube-logo.png')),
                         ),
                       ),
                       const SizedBox(
                         width: 15,
                       ),
                       Text(
-                        'Gumukmas Multifarm',
+                        'Gapoktan Subur',
                         style: greyTextStyle.copyWith(
                             fontSize: 11, fontWeight: light),
                       ),

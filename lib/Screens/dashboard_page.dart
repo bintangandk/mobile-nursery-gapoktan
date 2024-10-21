@@ -384,22 +384,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                   Color.fromRGBO(197, 237, 203, 1),
                                 ),
                                 buildGasCard4(
-                                  'Metana',
-                                  'CH4',
-                                  metana,
+                                  'Suhu',
+                                  '°C',
+                                  temperature,
                                   Color.fromRGBO(242, 207, 207, 1),
-                                ),
-                                buildGasCard(
-                                  'Amonia',
-                                  'NH3',
-                                  amonia,
-                                  Color.fromRGBO(247, 215, 187, 1),
-                                ),
-                                buildGasCard3(
-                                  'Karbon\nDioksida',
-                                  'CO2',
-                                  dioksida,
-                                  Color.fromRGBO(198, 225, 225, 1),
                                 ),
                               ],
                             ),
@@ -627,7 +615,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text('ppm', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
+                Text('°C', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
               ],
             )
           ],
@@ -773,7 +761,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text('ppm', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
+                Text('°C', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
               ],
             )
           ],
@@ -849,7 +837,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text('ppm', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
+                Text('°C', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
               ],
             )
           ],

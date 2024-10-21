@@ -164,7 +164,7 @@ class _settingsPageState extends State<settingsPage> {
                               height: 10,
                             ),
                             Text(
-                              'Gumukmas Admin',
+                              'Gapoktan Subur Admin',
                               style: blackTextStyle.copyWith(
                                   fontSize: 13, fontWeight: bold),
                             ),
