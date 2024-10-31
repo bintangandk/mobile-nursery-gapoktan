@@ -13,17 +13,11 @@ class GasReading {
 
   factory GasReading.fromJson(Map<String, dynamic> json) {
     return GasReading(
-      id: json['id_dioksida'] ??
-          json['id_humidity'] ??
-          json['id_temp'] ??
-          json['id_metana'] ??
-          json['id_amonia'],
+      id: json['id_humidity'] ??
+          json['id_temp'],
       idAlat: json['id_alat'],
-      nilai: (json['nilai_dioksida'] ??
-              json['nilai_humidity'] ??
-              json['nilai_suhu'] ??
-              json['nilai_metana'] ??
-              json['nilai_amonia'])
+      nilai: (json['nilai_humidity'] ??
+              json['nilai_suhu'])
           .toDouble(),
       createdAt: DateTime.parse(json['created_at']),
     );
@@ -31,35 +25,22 @@ class GasReading {
 }
 
 class ApiResponse {
-  final List<GasReading> dioksida;
   final List<GasReading> humidity;
   final List<GasReading> temperature;
-  final List<GasReading> metana;
-  final List<GasReading> amonia;
 
   ApiResponse({
-    required this.dioksida,
     required this.humidity,
     required this.temperature,
-    required this.metana,
-    required this.amonia,
   });
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {
     return ApiResponse(
-      dioksida: (json['dioksida'] as List)
-          .map((i) => GasReading.fromJson(i))
-          .toList(),
       humidity: (json['humidity'] as List)
           .map((i) => GasReading.fromJson(i))
           .toList(),
       temperature: (json['Temperature'] as List)
           .map((i) => GasReading.fromJson(i))
           .toList(),
-      metana:
-          (json['metana'] as List).map((i) => GasReading.fromJson(i)).toList(),
-      amonia:
-          (json['amonia'] as List).map((i) => GasReading.fromJson(i)).toList(),
     );
   }
 }

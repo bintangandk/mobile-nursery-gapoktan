@@ -37,6 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
   double metana = 0.0;
   double amonia = 0.0;
   String lastUpdated = '';
+  bool isToggled = false; // Variabel untuk melacak status toggle
   List<HourlyTemperature> dailySummary = [];
   List<HourlyHumidity> dailySummary2 = [];
   List<HourlyMethane> dailySummary3 = [];
@@ -73,30 +74,19 @@ class _DashboardPageState extends State<DashboardPage> {
       ApiResponse apiResponse =
           await ApiService().fetchGasReadings(dropdownvalue);
       setState(() {
-        dioksida = apiResponse.dioksida.isNotEmpty
-            ? apiResponse.dioksida.last.nilai
-            : 0.0;
         humidity = apiResponse.humidity.isNotEmpty
             ? apiResponse.humidity.last.nilai
             : 0.0;
         temperature = apiResponse.temperature.isNotEmpty
             ? apiResponse.temperature.last.nilai
             : 0.0;
-        metana =
-            apiResponse.metana.isNotEmpty ? apiResponse.metana.last.nilai : 0.0;
-        amonia =
-            apiResponse.amonia.isNotEmpty ? apiResponse.amonia.last.nilai : 0.0;
 
         // Update lastUpdated to the latest created_at field
         final lastUpdatedDate = [
-          if (apiResponse.dioksida.isNotEmpty)
-            apiResponse.dioksida.last.createdAt,
           if (apiResponse.humidity.isNotEmpty)
             apiResponse.humidity.last.createdAt,
           if (apiResponse.temperature.isNotEmpty)
             apiResponse.temperature.last.createdAt,
-          if (apiResponse.metana.isNotEmpty) apiResponse.metana.last.createdAt,
-          if (apiResponse.amonia.isNotEmpty) apiResponse.amonia.last.createdAt,
         ].reduce((a, b) => a.isAfter(b) ? a : b);
 
         lastUpdated = DateFormat('HH:mm, dd MMMM yyyy').format(lastUpdatedDate);
@@ -201,7 +191,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       Text('Selamat datang',
                           style: whitekTextStyle.copyWith(fontWeight: light)),
                       Text(
-                        'Gumukmas Admin',
+                        'Nursery Admin',
                         style: whitekTextStyle.copyWith(fontWeight: regular),
                         textAlign: TextAlign.left,
                       ),
@@ -285,67 +275,95 @@ class _DashboardPageState extends State<DashboardPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text('Suhu',
-                                                style: blackTextStyle.copyWith(
-                                                    fontWeight: regular)),
+                                            // Text('Suhu',
+                                            //     style: blackTextStyle.copyWith(
+                                            //         fontWeight: regular)),
                                             Row(
                                               children: [
-                                                Text('$temperature',
-                                                    style:
-                                                        blackTextStyle.copyWith(
-                                                            fontSize: 33,
-                                                            fontWeight: bold)),
                                                 const SizedBox(
                                                   width: 5,
                                                 ),
-                                                Text('C',
-                                                    style:
-                                                        blackTextStyle.copyWith(
-                                                            fontSize: 33,
-                                                            fontWeight: bold)),
+                                                Image.asset(
+                                                    'assets/pump-icon.png',
+                                                    height: 80,
+                                                    width: 80),
                                                 const SizedBox(
                                                   width: 80,
                                                 ),
-                                                // Image.asset(
-                                                //     'assets/iconamonia.png',
-                                                //     height: 60,
-                                                //     width: 60),
                                                 Container(
                                                   height: 110,
                                                   width: 110,
-                                                  child: 
-                                                    SfRadialGauge(
-                                                        axes: <RadialAxis>[
-                                                          RadialAxis(
-                                                              minimum: 0,
-                                                              maximum: 100,
-                                                              showLabels: false, 
-                                                              showAxisLine: true,
-                                                              showLastLabel: true,
-                                                              ranges: <GaugeRange>[
-                                                                GaugeRange(startValue: 0, endValue: 33, color: Colors.green),
-                                                                GaugeRange(startValue: 33, endValue: 66, color: Colors.orange),
-                                                                GaugeRange(startValue: 66, endValue: 100, color: Colors.red)
-                                                              ],
-                                                              pointers: <GaugePointer>[
-                                                                NeedlePointer(value: temperature)],
-                                                              annotations: <GaugeAnnotation>[
-                                                                GaugeAnnotation(
-                                                                    widget: Container(
-                                                                        child: Text(
-                                                                            '',
-                                                                            style: TextStyle(
-                                                                                fontSize:
-                                                                                    15,
-                                                                                fontWeight: FontWeight
-                                                                                    .w200))),
-                                                                    angle: 90,
-                                                                    positionFactor:
-                                                                        0.5)
-                                                              ])
-                                                        ])
-                                                  
+                                                  alignment: Alignment.center,
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Text(
+                                                        'Status Pompa',
+                                                        style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 17,
+                                                        ),
+                                                      ),
+                                                      Transform.scale(
+                                                        scale: 1.5,
+                                                        child: Switch(
+                                                          value: isToggled,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              isToggled = value;
+                                                            });
+                                                          },
+                                                          activeColor: Colors.brown,
+                                                          inactiveThumbColor: Colors.black,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        isToggled ? 'Aktif' : 'Tidak Aktif',
+                                                        style: TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: isToggled ? Colors.brown : Colors.black
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
                                                 )
+                                                // Container(
+                                                //   height: 110,
+                                                //   width: 110,
+                                                //   child: 
+                                                //     SfRadialGauge(
+                                                //         axes: <RadialAxis>[
+                                                //           RadialAxis(
+                                                //               minimum: 0,
+                                                //               maximum: 100,
+                                                //               showLabels: false, 
+                                                //               showAxisLine: true,
+                                                //               showLastLabel: true,
+                                                //               ranges: <GaugeRange>[
+                                                //                 GaugeRange(startValue: 0, endValue: 33, color: Colors.green),
+                                                //                 GaugeRange(startValue: 33, endValue: 66, color: Colors.orange),
+                                                //                 GaugeRange(startValue: 66, endValue: 100, color: Colors.red)
+                                                //               ],
+                                                //               pointers: <GaugePointer>[
+                                                //                 NeedlePointer(value: temperature)],
+                                                //               annotations: <GaugeAnnotation>[
+                                                //                 GaugeAnnotation(
+                                                //                     widget: Container(
+                                                //                         child: Text(
+                                                //                             '',
+                                                //                             style: TextStyle(
+                                                //                                 fontSize:
+                                                //                                     15,
+                                                //                                 fontWeight: FontWeight
+                                                //                                     .w200))),
+                                                //                     angle: 90,
+                                                //                     positionFactor:
+                                                //                         0.5)
+                                                //               ])
+                                                //         ])
+                                                  
+                                                // )
                                               ],
                                             ),
                                           ],

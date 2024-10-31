@@ -47,19 +47,12 @@ class _DashboardPageState extends State<DashboardPage> {
       ApiResponse apiResponse =
           await ApiService().fetchGasReadings(dropdownvalue);
       setState(() {
-        dioksida = apiResponse.dioksida.isNotEmpty
-            ? apiResponse.dioksida.last.nilai
-            : 0.0;
         humidity = apiResponse.humidity.isNotEmpty
             ? apiResponse.humidity.last.nilai
             : 0.0;
         temperature = apiResponse.temperature.isNotEmpty
             ? apiResponse.temperature.last.nilai
             : 0.0;
-        metana =
-            apiResponse.metana.isNotEmpty ? apiResponse.metana.last.nilai : 0.0;
-        amonia =
-            apiResponse.amonia.isNotEmpty ? apiResponse.amonia.last.nilai : 0.0;
         lastUpdated = DateFormat('HH:mm, dd MMMM yyyy').format(DateTime.now());
       });
     } catch (e) {

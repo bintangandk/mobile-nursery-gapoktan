@@ -207,7 +207,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     ),
                                     Text(
                                       'Normal',
-                                      style: greenTextStyle.copyWith(
+                                      style: brownTextStyle.copyWith(
                                           fontSize: 28, fontWeight: bold),
                                     ),
                                     Column(
