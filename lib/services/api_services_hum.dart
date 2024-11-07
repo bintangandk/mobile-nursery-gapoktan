@@ -5,7 +5,7 @@ import 'package:mobile_gmf/Models/average_hum.dart';
 class ApiServiceHum {
   Future<HumidityData> fetchDailyHumiditySummary(String location) async {
     final url =
-        'https://is4ac.research-ai.my.id/api/averagehum/$location'; // replace with your actual URL
+        'https://is4ac-nursery.research-ai.my.id/api/averagehum/$location'; // replace with your actual URL
 
     try {
       final response = await http.get(Uri.parse(url));

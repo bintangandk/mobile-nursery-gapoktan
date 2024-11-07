@@ -38,7 +38,7 @@ class ApiResponse {
       humidity: (json['humidity'] as List)
           .map((i) => GasReading.fromJson(i))
           .toList(),
-      temperature: (json['Temperature'] as List)
+      temperature: (json['temperature'] as List)
           .map((i) => GasReading.fromJson(i))
           .toList(),
     );

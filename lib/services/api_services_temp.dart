@@ -6,7 +6,7 @@ class ApiServiceTemp {
   Future<TemperatureData> fetchDailyTemperatureSummary(
       String location) async {
     final url =
-        'https://is4ac.research-ai.my.id/api/averagetemp/$location'; // replace with your actual URL
+        'https://is4ac-nursery.research-ai.my.id/api/averagetemp/$location'; // replace with your actual URL
 
     try {
       final response = await http.get(Uri.parse(url));

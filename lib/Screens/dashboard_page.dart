@@ -475,96 +475,96 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Grafik rata-rata metana',
-                        style: blackTextStyle.copyWith(fontWeight: bold),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Card(
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: greyColor, width: 0.5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
-                              child: Center(
-                                  child: MyBarGraph3(
-                                dailySummary3: dailySummary3,
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Grafik rata-rata amonia',
-                        style: blackTextStyle.copyWith(fontWeight: bold),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Card(
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: greyColor, width: 0.5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
-                              child: Center(
-                                  child: MyBarGraph4(
-                                dailySummary4: dailySummary4,
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Grafik rata-rata karbon dioksida',
-                        style: blackTextStyle.copyWith(fontWeight: bold),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Card(
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: greyColor, width: 0.5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
-                              child: Center(
-                                  child: MyBarGraph5(
-                                dailySummary5: dailySummary5,
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   children: [
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Text(
+                  //       'Grafik rata-rata metana',
+                  //       style: blackTextStyle.copyWith(fontWeight: bold),
+                  //     ),
+                  //     Expanded(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(10.0),
+                  //         child: Card(
+                  //           elevation: 1,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             side: BorderSide(color: greyColor, width: 0.5),
+                  //           ),
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
+                  //             child: Center(
+                  //                 child: MyBarGraph3(
+                  //               dailySummary3: dailySummary3,
+                  //             )),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Column(
+                  //   children: [
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Text(
+                  //       'Grafik rata-rata amonia',
+                  //       style: blackTextStyle.copyWith(fontWeight: bold),
+                  //     ),
+                  //     Expanded(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(10.0),
+                  //         child: Card(
+                  //           elevation: 1,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             side: BorderSide(color: greyColor, width: 0.5),
+                  //           ),
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
+                  //             child: Center(
+                  //                 child: MyBarGraph4(
+                  //               dailySummary4: dailySummary4,
+                  //             )),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Column(
+                  //   children: [
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Text(
+                  //       'Grafik rata-rata karbon dioksida',
+                  //       style: blackTextStyle.copyWith(fontWeight: bold),
+                  //     ),
+                  //     Expanded(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(10.0),
+                  //         child: Card(
+                  //           elevation: 1,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             side: BorderSide(color: greyColor, width: 0.5),
+                  //           ),
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
+                  //             child: Center(
+                  //                 child: MyBarGraph5(
+                  //               dailySummary5: dailySummary5,
+                  //             )),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -831,7 +831,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             startValue: 2000, endValue: 3000, color: Colors.red)
                       ],
                       pointers: <GaugePointer>[
-                        NeedlePointer(value: metana)
+                        NeedlePointer(value: temperature)
                       ],
                       annotations: <GaugeAnnotation>[
                         GaugeAnnotation(

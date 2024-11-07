@@ -5,7 +5,7 @@ import 'package:mobile_gmf/Models/gas_reading.dart';
 // }
 class ApiService {
 
-  final String baseUrl = "https://is4ac.research-ai.my.id/api/gas/";
+  final String baseUrl = "https://is4ac-nursery.research-ai.my.id/api/gas/";
 
   Future<ApiResponse> fetchGasReadings(String location) async {
     final response = await http.get(Uri.parse('$baseUrl$location'));
