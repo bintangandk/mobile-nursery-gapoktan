@@ -14,10 +14,10 @@ class GasReading {
   factory GasReading.fromJson(Map<String, dynamic> json) {
     return GasReading(
       id: json['id_humidity'] ??
-          json['id_temp'],
+          json['id_temperature'],
       idAlat: json['id_alat'],
       nilai: (json['nilai_humidity'] ??
-              json['nilai_suhu'])
+              json['nilai_temperature'])
           .toDouble(),
       createdAt: DateTime.parse(json['created_at']),
     );
