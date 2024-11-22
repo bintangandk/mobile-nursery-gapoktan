@@ -110,7 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
   String dropdownvalue = '1';
 
   // List of items in our dropdown menu
-  var items = ['1', '2', '3', '4'];
+  var items = ['1', '2', '3', '4', '5', '6'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -231,8 +231,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                 ),
                                                 Image.asset(
                                                     'assets/pump-icon.png',
-                                                    height: 80,
-                                                    width: 80),
+                                                    height: 65,
+                                                    width: 65),
                                                 const SizedBox(
                                                   width: 80,
                                                 ),
@@ -298,24 +298,27 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: GridView.count(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 4,
-                              mainAxisSpacing: 4,
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                            child: Column(
                               children: [
                                 buildGasCard(
-                                  'Kelembapan',
+                                  'Humidity',
                                   'HR',
                                   humidity,
-                                  Color.fromRGBO(197, 237, 203, 1),
+                                  Color.fromRGBO(197, 236, 237, 1),
                                 ),
+                                SizedBox(height: 10),
                                 buildGasCard2(
-                                  'Suhu',
+                                  'Temperature',
                                   '°C',
                                   temperature,
                                   Color.fromRGBO(242, 207, 207, 1),
+                                ),
+                                SizedBox(height: 10),
+                                buildGasCard3(
+                                  'pH Tanah',
+                                  'pH',
+                                  temperature,
+                                  Color.fromRGBO(188, 139, 93, 1),
                                 ),
                               ],
                             ),
@@ -420,8 +423,8 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             SizedBox(height: 10),
             Container(
-                height: 75,
-                width: 70,
+                height: 85,
+                width: 80,
                 child: SfRadialGauge(axes: <RadialAxis>[
                   RadialAxis(minimum: 0, maximum: 300, showLabels: false, showAxisLine: true,ranges: <GaugeRange>[
                     GaugeRange(
@@ -430,7 +433,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         startValue: 30, endValue: 150, color: Colors.orange),
                     GaugeRange(startValue: 150, endValue: 300, color: Colors.red)
                   ], pointers: <GaugePointer>[
-                    NeedlePointer(value: temperature)
+                    NeedlePointer(value: humidity)
                   ], annotations: <GaugeAnnotation>[
                     GaugeAnnotation(
                         widget: Container(
@@ -443,18 +446,21 @@ class _DashboardPageState extends State<DashboardPage> {
                   ])
                 ])),
             SizedBox(height: 5),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 40,
-                ),
-                Text('$value',
-                    style: blackTextStyle.copyWith(fontWeight: bold, fontSize: 16)),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text('°C', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
-              ],
+              Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // Mengatur ukuran Row hanya sebesar isinya
+                children: [
+                  Text(
+                    '$value',
+                    style: blackTextStyle.copyWith(fontWeight: bold, fontSize: 16),
+                  ),
+                  const SizedBox(width: 5), // Jarak antara nilai dan unit
+                  Text(
+                    '%',
+                    style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16),
+                  ),
+                ],
+              ),
             )
           ],
         ),
@@ -498,7 +504,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         startValue: 33, endValue: 66, color: Colors.orange),
                     GaugeRange(startValue: 66, endValue: 100, color: Colors.red)
                   ], pointers: <GaugePointer>[
-                    NeedlePointer(value: humidity)
+                    NeedlePointer(value: temperature)
                   ], annotations: <GaugeAnnotation>[
                     GaugeAnnotation(
                         widget: Container(
@@ -511,19 +517,93 @@ class _DashboardPageState extends State<DashboardPage> {
                   ])
                 ])),
             SizedBox(height: 5),
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // Mengatur ukuran Row hanya sebesar isinya
+                children: [
+                  Text(
+                    '$value',
+                    style: blackTextStyle.copyWith(fontWeight: bold, fontSize: 16),
+                  ),
+                  const SizedBox(width: 5), // Jarak antara nilai dan unit
+                  Text(
+                    '°C',
+                    style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildGasCard3(
+      String title, String kode, double value, Color color) {
+    return Card(
+      elevation: 0.1,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: BorderSide(color: color, width: 0.1),
+      ),
+      color: color,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
             Row(
               children: [
+                Text(title,
+                    style: blackTextStyle.copyWith(fontWeight: regular)),
                 const SizedBox(
-                  width: 44,
+                  width: 25,
                 ),
-                Text('$value',
-                    style: blackTextStyle.copyWith(fontWeight: bold, fontSize: 16)),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text('%', style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16)),
+                Text(kode, style: blackTextStyle.copyWith(fontWeight: bold)),
               ],
-            )
+            ),
+            SizedBox(height: 10),
+            Container(
+                height: 75,
+                width: 70,
+                child: SfRadialGauge(axes: <RadialAxis>[
+                  RadialAxis(minimum: 0, maximum: 100, showLabels: false, showAxisLine: true, ranges: <GaugeRange>[
+                    GaugeRange(
+                        startValue: 0, endValue: 33, color: Colors.green),
+                    GaugeRange(
+                        startValue: 33, endValue: 66, color: Colors.orange),
+                    GaugeRange(startValue: 66, endValue: 100, color: Colors.red)
+                  ], pointers: <GaugePointer>[
+                    NeedlePointer(value: temperature)
+                  ], annotations: <GaugeAnnotation>[
+                    GaugeAnnotation(
+                        widget: Container(
+                            child: Text('',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w200))),
+                        angle: 90,
+                        positionFactor: 0.5)
+                  ])
+                ])),
+            SizedBox(height: 5),
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // Mengatur ukuran Row hanya sebesar isinya
+                children: [
+                  Text(
+                    '$value',
+                    style: blackTextStyle.copyWith(fontWeight: bold, fontSize: 16),
+                  ),
+                  const SizedBox(width: 5), // Jarak antara nilai dan unit
+                  Text(
+                    'pH',
+                    style: blackTextStyle.copyWith(fontWeight: light, fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
