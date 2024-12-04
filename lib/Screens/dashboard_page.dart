@@ -9,6 +9,8 @@ import 'package:mobile_gmf/services/api_services.dart';
 import 'package:mobile_gmf/services/api_services_temp.dart';
 import 'package:mobile_gmf/services/api_services_hum.dart';
 import 'package:mobile_gmf/Models/gas_reading.dart';
+import 'package:mobile_gmf/Models/control_state.dart';
+import 'package:mobile_gmf/services/pum_service.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -24,11 +26,13 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   double humidity = 0.0;
   double temperature = 0.0;
+  double ph_tanah = 0.0;
   String lastUpdated = '';
-  bool isToggled = false; // Variabel untuk melacak status toggle
+  bool isToggled = false; // Status awal pompa
+  final PumpService pumpService = PumpService();
   List<HourlyTemperature> dailySummary = [];
   List<HourlyHumidity> dailySummary2 = [];
- 
+
 
   @override
   void initState() {
@@ -104,7 +108,29 @@ class _DashboardPageState extends State<DashboardPage> {
     }
   }
 
+   // Fungsi untuk toggle status pompa
+  Future<void> _togglePump() async {
+    try {
+      // Kirim request ke API untuk mengubah status pompa
+      final newStatus = await pumpService.togglePumpStatus(7); // Mengirim id_alat 7
 
+      // Update UI berdasarkan status baru
+      setState(() {
+        isToggled = newStatus; // Mengubah status berdasarkan respons
+      });
+
+      // Tampilkan notifikasi
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(isToggled ? 'Pompa dihidupkan' : 'Pompa dimatikan')),
+      );
+    } catch (e) {
+      // Jika ada error, tampilkan pesan
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Gagal mengubah status pompa: $e')),
+      );
+    }
+  }
+  
 
   // Initial Selected Value
   String dropdownvalue = '1';
@@ -168,7 +194,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   Row(
                     children: [
                       const SizedBox(width: 140),
-                      Text('Lokasi',
+                      Text('Alat',
                           style: whitekTextStyle.copyWith(fontWeight: bold)),
                       SizedBox(width: 3),
                       DropdownButton(
@@ -231,13 +257,13 @@ class _DashboardPageState extends State<DashboardPage> {
                                                 ),
                                                 Image.asset(
                                                     'assets/pump-icon.png',
-                                                    height: 65,
-                                                    width: 65),
+                                                    height: 80,
+                                                    width: 80),
                                                 const SizedBox(
-                                                  width: 80,
+                                                  width: 65,
                                                 ),
                                                 Container(
-                                                  height: 110,
+                                                  height: 165,
                                                   width: 110,
                                                   alignment: Alignment.center,
                                                   child: Column(
@@ -258,6 +284,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             setState(() {
                                                               isToggled = value;
                                                             });
+                                                            _togglePump(); // Panggil untuk memperbarui status di server
                                                           },
                                                           activeColor: Colors.brown,
                                                           inactiveThumbColor: Colors.black,
@@ -268,9 +295,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         style: TextStyle(
                                                           fontSize: 17,
                                                           fontWeight: FontWeight.bold,
-                                                          color: isToggled ? Colors.brown : Colors.black
+                                                          color: isToggled ? Colors.brown : Colors.black,
                                                         ),
-                                                      )
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -300,18 +327,27 @@ class _DashboardPageState extends State<DashboardPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Column(
                               children: [
-                                buildGasCard(
-                                  'Humidity',
-                                  'HR',
-                                  humidity,
-                                  Color.fromRGBO(197, 236, 237, 1),
-                                ),
-                                SizedBox(height: 10),
-                                buildGasCard2(
-                                  'Temperature',
-                                  '°C',
-                                  temperature,
-                                  Color.fromRGBO(242, 207, 207, 1),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: buildGasCard(
+                                        'Humidity',
+                                        'HR',
+                                        humidity,
+                                        Color.fromRGBO(197, 236, 237, 1),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10), 
+                                    Expanded(
+                                      child: buildGasCard2(
+                                        'Temperature',
+                                        '°C',
+                                        temperature,
+                                        Color.fromRGBO(242, 207, 207, 1),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
                                 buildGasCard3(
@@ -416,7 +452,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 Text(title,
                     style: blackTextStyle.copyWith(fontWeight: regular)),
                 const SizedBox(
-                  width: 47,
+                  width: 30,
                 ),
                 Text(kode, style: blackTextStyle.copyWith(fontWeight: bold)),
               ],

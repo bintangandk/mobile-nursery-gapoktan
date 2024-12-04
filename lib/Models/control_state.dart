@@ -1,19 +1,16 @@
 class ControlState {
-  final bool isPumpActive;
+  final String message;
+  final bool isActive;
 
-  ControlState({required this.isPumpActive});
+  ControlState({
+    required this.message,
+    required this.isActive,
+  });
 
-  // Method untuk parsing dari JSON
-  factory ControlState.fromJson(Map<String, dynamic> json) {
+  factory ControlState.fromJson(dynamic json) {
     return ControlState(
-      isPumpActive: json['is_pump_active'], // Sesuaikan key dengan API
+      message: json[0], // Pesan, contoh: "Data pompa berhasil di hidupkan"
+      isActive: json['status'] == 1, // Status: 1 = aktif, 0 = mati
     );
-  }
-
-  // Method untuk mengonversi model ke JSON (jika diperlukan)
-  Map<String, dynamic> toJson() {
-    return {
-      'is_pump_active': isPumpActive,
-    };
   }
 }
