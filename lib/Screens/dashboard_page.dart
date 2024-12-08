@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_gmf/Models/average_temp.dart';
 import 'package:mobile_gmf/Models/average_hum.dart';
+import 'package:mobile_gmf/Models/avarage_ph.dart';
 import 'package:mobile_gmf/Screens/Settings_page.dart';
 import 'package:mobile_gmf/Theme.dart';
 import 'package:mobile_gmf/Widgets/chart/bar_graph.dart';
 import 'package:mobile_gmf/Widgets/chart/bar_graph_kelembapan.dart';
+import 'package:mobile_gmf/Widgets/chart/bar_grap_ph.dart';
 import 'package:mobile_gmf/services/api_services.dart';
 import 'package:mobile_gmf/services/api_services_temp.dart';
 import 'package:mobile_gmf/services/api_services_hum.dart';
+import 'package:mobile_gmf/services/api_services_ph.dart';
 import 'package:mobile_gmf/Models/gas_reading.dart';
 import 'package:mobile_gmf/Models/control_state.dart';
 import 'package:mobile_gmf/services/pum_service.dart';
@@ -32,6 +35,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final PumpService pumpService = PumpService();
   List<HourlyTemperature> dailySummary = [];
   List<HourlyHumidity> dailySummary2 = [];
+  List<HourlyPh> dailySummary3 = [];
 
 
   @override
@@ -54,6 +58,7 @@ class _DashboardPageState extends State<DashboardPage> {
     await fetchGasReadings();
     await fetchDailyTemperatureSummary();
     await fetchDailyHumiditySummary();
+    await fetchDailyPhSummary();
   }
 
   Future<void> fetchGasReadings() async {
@@ -67,6 +72,9 @@ class _DashboardPageState extends State<DashboardPage> {
         temperature = apiResponse.temperature.isNotEmpty
             ? apiResponse.temperature.last.nilai
             : 0.0;
+        ph_tanah = apiResponse.ph_tanah.isNotEmpty
+            ? apiResponse.ph_tanah.last.nilai
+            : 0.0;
 
         // Update lastUpdated to the latest created_at field
         final lastUpdatedDate = [
@@ -74,6 +82,8 @@ class _DashboardPageState extends State<DashboardPage> {
             apiResponse.humidity.last.createdAt,
           if (apiResponse.temperature.isNotEmpty)
             apiResponse.temperature.last.createdAt,
+          if (apiResponse.ph_tanah.isNotEmpty)
+            apiResponse.ph_tanah.last.createdAt,
         ].reduce((a, b) => a.isAfter(b) ? a : b);
 
         lastUpdated = DateFormat('HH:mm, dd MMMM yyyy').format(lastUpdatedDate);
@@ -105,6 +115,18 @@ class _DashboardPageState extends State<DashboardPage> {
       });
     } catch (e) {
       print('Failed to fetch daily humidity summary: $e');
+    }
+  }
+
+  Future<void> fetchDailyPhSummary() async {
+    try {
+      PhData phData =
+        await ApiServicePh().fetchDailyPhSummary(dropdownvalue);
+      setState(() {
+        dailySummary3 = phData.ph_tanah;
+      });
+    } catch (e) {
+      print('Failed to fetch daily ph summary: $e');
     }
   }
 
@@ -353,7 +375,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 buildGasCard3(
                                   'pH Tanah',
                                   'pH',
-                                  temperature,
+                                  ph_tanah,
                                   Color.fromRGBO(188, 139, 93, 1),
                                 ),
                               ],
@@ -417,6 +439,36 @@ class _DashboardPageState extends State<DashboardPage> {
                               child: Center(
                                   child: MyBarGraph2(
                                 dailySummary2: dailySummary2,
+                              )),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Grafik rata-rata Ph Tanah',
+                        style: blackTextStyle.copyWith(fontWeight: bold),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Card(
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: BorderSide(color: greyColor, width: 0.5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 20, 1, 6),
+                              child: Center(
+                                  child: MyBarGraph3(
+                                dailySummary3: dailySummary3,
                               )),
                             ),
                           ),
@@ -611,7 +663,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         startValue: 33, endValue: 66, color: Colors.orange),
                     GaugeRange(startValue: 66, endValue: 100, color: Colors.red)
                   ], pointers: <GaugePointer>[
-                    NeedlePointer(value: temperature)
+                    NeedlePointer(value: ph_tanah)
                   ], annotations: <GaugeAnnotation>[
                     GaugeAnnotation(
                         widget: Container(

@@ -1,19 +1,19 @@
-// Model class to represent a single temperature record
+// Model class to represent a single ph record
 class HourlyPh {
   final int hour;
-  final double averagePh;
+  final double averagePhtanah;
 
-  HourlyPh({required this.hour, required this.averagePh});
+  HourlyPh({required this.hour, required this.averagePhtanah});
 
   factory HourlyPh.fromJson(Map<String, dynamic> json) {
     return HourlyPh(
       hour: json['hour'],
-      averagePh: (json['average_ph'] ?? 0.0).toDouble(),
+      averagePhtanah: (json['average_phtanah'] ?? 0.0).toDouble(),
     );
   }
 }
 
-// Model class to represent a list of temperature records
+// Model class to represent a list of ph records
 class PhData {
   final List<HourlyPh> ph_tanah;
 
