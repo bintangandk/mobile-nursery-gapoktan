@@ -247,39 +247,6 @@ class _settingsPageState extends State<settingsPage> {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                height: 40,
-                width: 340,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: greyColor.withOpacity(0.25),
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  color: whiteColor,
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 20,
-                      width: 20,
-                      child: Icon(Icons.lock),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      'Ganti Password',
-                      style: greyTextStyle.copyWith(
-                          fontSize: 11, fontWeight: light),
-                    )
-                  ],
-                ),
-              ),
               InkWell(
                 onTap: logout,
                 child: Container(

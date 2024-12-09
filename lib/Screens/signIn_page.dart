@@ -133,7 +133,7 @@ class _SignInPageState extends State<SignInPage> {
                 bottom: 50,
               ),
               decoration: const BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/logo-kopi.png'))),
+                  image: DecorationImage(image: AssetImage('assets/logo.png'))),
             ),
             Text('Halo, Selamat datang di kopi nursery',
                 textAlign: TextAlign.center,

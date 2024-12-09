@@ -211,7 +211,7 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Kualitas udara',
+                  Text('Gapoktan Subur',
                       style: whitekTextStyle.copyWith(fontWeight: bold)),
                   Row(
                     children: [
@@ -355,7 +355,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     Expanded(
                                       child: buildGasCard(
                                         'Humidity',
-                                        'HR',
+                                        '%',
                                         humidity,
                                         Color.fromRGBO(197, 236, 237, 1),
                                       ),
