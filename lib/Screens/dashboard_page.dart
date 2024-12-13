@@ -211,11 +211,11 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Gapoktan Subur',
+                  Text('Kopi Nursery',
                       style: whitekTextStyle.copyWith(fontWeight: bold)),
                   Row(
                     children: [
-                      const SizedBox(width: 140),
+                      const SizedBox(width: 170),
                       Text('Alat',
                           style: whitekTextStyle.copyWith(fontWeight: bold)),
                       SizedBox(width: 3),
